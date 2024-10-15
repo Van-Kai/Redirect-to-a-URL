@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirect Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .foot {
+            position: absolute; /* 使用绝对定位 */
+            bottom: 0; /* 距离底部0 */
+            width: 100%; /* 宽度100% */
+            text-align: center; /* 文本居中 */
+            background-color: rgba(221, 221, 221, 0); /* 背景颜色 */
+            padding: 0px 0; /* 内边距 */
+            font-size: 12px;
+            color: #959698;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-top: 10px;
+            width: 70%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #5cb85c;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+    <script>
+        function redirectToUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectUrl = urlParams.get('url');
+            
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                // 如果没有url参数，显示输入界面
+                document.getElementById('redirectForm').style.display = 'block';
+            }
+        }
+        
+        // 当页面加载完毕时执行跳转
+        window.onload = function() {
+            redirectToUrl();
+        };
+        
+        // 处理表单提交
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const urlInput = document.getElementById('urlInput');
+            const redirectUrl = urlInput.value;
+            if (redirectUrl) {
+                window.location.href = redirectUrl;
+            } else {
+                alert('Please enter a valid URL. \n请输入一个有效的链接.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="redirectForm" style="display: none;" class="container">
+        <h1>Redirect to a URL</h1>
+        <form onsubmit="handleFormSubmit(event);">
+            <input type="text" id="urlInput" placeholder="Enter URL here...">
+            <button type="submit">Go</button>
+        </form>
+    </div>
+    <div class="foot">
+        <p>作者:你的凯凯 QQ:2027514529</p>
+    </div>
+
+</body>
+</html>
